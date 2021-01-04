@@ -1,0 +1,70 @@
+﻿{
+  "PackageFormatVersion": "1.0",
+  "Assembly": "mail_thomaslinder_at.Logic.Nodes.dll",
+  "PackageName": {
+    "en": "KHue logic nodes"
+  },
+  "DependentFiles": [
+    "LogicModule.Nodes.Helpers.dll"
+  ],
+  "Version": "1.0.0",
+  "Author": "Thomas Linder",
+  "Copyright": "Thomas Linder",
+  "DeveloperId": "mail_thomaslinder_at",
+  "License": "Free",
+  "PackageId": "6380A5C1-9D26-4616-91FA-8BBC9B871465",
+  "Nodes": [
+    {
+      "Type": "mail_thomaslinder_at.Logic.Nodes.KHueNodeBinary",
+      "Name": {
+        "en": "KHue binary logic node"
+      },
+      "IsConverter": false,
+      "Category": "Node",
+      "DefaultIcon": "icons/huebulb.png",
+      "HelpTooltip": {
+        "en": "Logic Node."
+      },
+      "HelpFileReference": null
+    },
+    {
+      "Type": "mail_thomaslinder_at.Logic.Nodes.KHueNodeBrightness",
+      "Name": {
+        "en": "KHue brightness logic node"
+      },
+      "IsConverter": false,
+      "Category": "Node",
+      "DefaultIcon": "icons/huebulb.png",
+      "HelpTooltip": {
+        "en": "Logic Node."
+      },
+      "HelpFileReference": null
+    },
+    {
+      "Type": "mail_thomaslinder_at.Logic.Nodes.KHueNodeColorTemperature",
+      "Name": {
+        "en": "KHue color temperature logic node"
+      },
+      "IsConverter": false,
+      "Category": "Node",
+      "DefaultIcon": "icons/huebulb.png",
+      "HelpTooltip": {
+        "en": "Logic Node."
+      },
+      "HelpFileReference": null
+    },
+    {
+      "Type": "mail_thomaslinder_at.Logic.Nodes.KHueNodeRgb",
+      "Name": {
+        "en": "KHue RGB logic node"
+      },
+      "IsConverter": false,
+      "Category": "Node",
+      "DefaultIcon": "icons/huebulb.png",
+      "HelpTooltip": {
+        "en": "Logic Node."
+      },
+      "HelpFileReference": null
+    }
+  ]
+}
