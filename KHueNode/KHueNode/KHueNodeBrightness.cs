@@ -16,7 +16,7 @@ namespace mail_thomaslinder_at.Logic.Nodes
 
             _typeService = context.GetService<ITypeService>();
 
-            Input = _typeService.CreateByte(PortTypes.Byte, "Input");
+            Input = _typeService.CreateByte(PortTypes.Byte, "Brightness");
             LightId = _typeService.CreateInt(PortTypes.Integer, "Light ID");
             Username = _typeService.CreateString(PortTypes.String, "Hue user name");
             IpAddress = _typeService.CreateString(PortTypes.String, "Hue bridge IP address");
@@ -47,18 +47,26 @@ namespace mail_thomaslinder_at.Logic.Nodes
         {
             ErrorMessage.Value = "";
 
-            // Coerce the data, according to the documentation values must be within (including) 1..254
-            if (Input.Value < 1)
-            {
-                Input.Value = 1;
+            //check for brightness = 0, if so: turn lamp off
+            if (Input.Value == 0){
+                var jsonData = $"{{\"on\": false}}";
+            } else {
+                // Coerce the data, according to the documentation values must be within (including) 1..254
+                if (Input.Value < 1)
+                {
+                    Input.Value = 1;
+                }
+    
+                if (Input.Value > 100)
+                {
+                    Input.Value = 100;
+                }
+                
+                //Transform 1-100 to 1-254
+                Input.Value = (int)(Input.Value * 2.54);
+                
+                var jsonData = $"{{\"on\": true,\"bri\":{Input.Value}}}";
             }
-
-            if (Input.Value > 254)
-            {
-                Input.Value = 254;
-            }
-            
-            var jsonData = $"{{\"bri\":{Input.Value}}}";
 
             try
             {
