@@ -16,7 +16,7 @@ namespace mail_thomaslinder_at.Logic.Nodes
 
             _typeService = context.GetService<ITypeService>();
 
-            Input = _typeService.CreateUShort(PortTypes.Word, "Input");
+            Input = _typeService.CreateInt(PortTypes.Integer, "Color Temperature");
             LightId = _typeService.CreateInt(PortTypes.Integer, "Light ID");
             Username = _typeService.CreateString(PortTypes.String, "Hue user name");
             IpAddress = _typeService.CreateString(PortTypes.String, "Hue bridge IP address");
@@ -46,16 +46,19 @@ namespace mail_thomaslinder_at.Logic.Nodes
         {
             ErrorMessage.Value = "";
 
-            // Coerce the data, according to the documentation values must be within (including) 153 (6500K)..500 (2000K)
-            if (Input.Value < 153)
+            // Coerce the data, according to the documentation values must be within (including) 153 (6511K)..500 (2000K)
+            if (Input.Value < 2000)
             {
-                Input.Value = 153;
+                Input.Value = 2000;
             }
 
-            if (Input.Value > 500)
+            if (Input.Value > 6511)
             {
-                Input.Value = 500;
+                Input.Value = 6511;
             }
+            
+            //convert 2000 - 6511 to 500 - 153
+            Input.Value = 500 - (int)((2000 - Input.Value) / 13);
             
             var jsonData = $"{{\"ct\":{Input.Value}}}";
 
