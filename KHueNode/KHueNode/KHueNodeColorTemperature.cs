@@ -24,7 +24,7 @@ namespace mail_thomaslinder_at.Logic.Nodes
         }
 
         [Input(DisplayOrder = 1, IsRequired = true)]
-        public UShortValueObject Input { get; }
+        public IntValueObject Input { get; }
 
         [Input(DisplayOrder = 2, IsDefaultShown = false, IsInput = false)]
         public IntValueObject LightId { get; }
@@ -58,7 +58,7 @@ namespace mail_thomaslinder_at.Logic.Nodes
             }
             
             //convert 2000 - 6511 to 500 - 153
-            Input.Value = 500 - (int)((2000 - Input.Value) / 13);
+            Input.Value = 500 - (2000 - Input.Value) / 13;
             
             var jsonData = $"{{\"ct\":{Input.Value}}}";
 

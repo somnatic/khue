@@ -47,9 +47,11 @@ namespace mail_thomaslinder_at.Logic.Nodes
         {
             ErrorMessage.Value = "";
 
+            string jsonData;
+
             //check for brightness = 0, if so: turn lamp off
             if (Input.Value == 0){
-                var jsonData = $"{{\"on\": false}}";
+                jsonData = $"{{\"on\": false}}";
             } else {
                 // Coerce the data, according to the documentation values must be within (including) 1..254
                 if (Input.Value < 1)
@@ -63,9 +65,9 @@ namespace mail_thomaslinder_at.Logic.Nodes
                 }
                 
                 //Transform 1-100 to 1-254
-                Input.Value = (int)(Input.Value * 2.54);
+                Input.Value = (byte)(Input.Value * 2.54);
                 
-                var jsonData = $"{{\"on\": true,\"bri\":{Input.Value}}}";
+                jsonData = $"{{\"on\": true,\"bri\":{Input.Value}}}";
             }
 
             try
